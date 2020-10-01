@@ -164,28 +164,42 @@ class linkedlist
         return 1;
       }
 
-      /*
-       int LinkedListADT::deleteCurrentItem(int currentData)
-{
-    node *t=Search(currentData);
-    if(t==NULL)
-    {
-        cout<<"Invalid";
-        return 0;
-    }
-    if(t->next==NULL){
-        deleteItemFromLast();
-        return 1;
-    }
-    while(t->next != NULL){
-         t->item=t->next->item;
-            t=t->next;
-    }
-   deleteItemFromLast();
-    return (1);
+      void edit_item(int current_data, int new_data)
+      {
+        node *t=search(current_data);
+        t->item=new_data;
+      }
 
-}
-      */
+      int count()
+      {
+        int x=0;
+        node *t=start;
+        if(t==NULL)
+          return 0;
+        else if (t->next==NULL)
+          return 1;
+        else 
+        {
+          while(t->next!=NULL)
+          {
+            t=t->next;
+            x++;
+          }
+        }
+        return x+1;
+      }
+
+      int get_first_item()
+      {
+        if(start==NULL){
+            cout<<"Empty";
+            return -1;
+        }
+          
+        else{
+          return (start->item);
+        }
+      }
 
 };
 
@@ -194,7 +208,11 @@ int main()
 {
  linkedlist l1;
 // l1.insert_at_last(25);
+ cout<<l1.count();
  l1.insert_at_start(5);
+ cout<<l1.count(); 
+ cout<<"______________"<<endl;
+ l1.viewList();
  l1.insert_at_last(10);
  l1.insert_at_last(15);
  l1.insert_after(10, 30);
@@ -207,5 +225,11 @@ int main()
  l1.insert_at_last(35);
  l1.insert_at_last(45);
  l1.delete_specific_item(30);
+ cout<<"______________"<<endl;
  l1.viewList();
+ cout<<"______________"<<endl;
+ l1.edit_item(35, 30);
+ cout<<l1.count();
+ cout<<"______________"<<endl;
+ cout<<l1.get_first_item();
 }
